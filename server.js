@@ -6,6 +6,10 @@ const posts = require('./routes/posts');
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
+//body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 //Routes
 app.use('/api/posts', posts);
 
