@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
 let posts = [
   { id: 1, title: 'Post One' },
@@ -54,4 +54,5 @@ router.put('/:id', (req, res) => {
   res.status(200).json(posts);
 });
 
-module.exports = router;
+
+export default router;
