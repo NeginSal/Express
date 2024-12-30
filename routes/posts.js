@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 // GET a single post
 router.get('/:id', (req, res) => {
-  const id = parseInt(req.params.is);
+  const id = parseInt(req.params.id);
   const post = posts.find((post) => post.id === id);
 
   if (!post) {
@@ -57,12 +57,13 @@ router.put('/:id', (req, res) => {
 // Delete a post 
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const post = posts.find((post) => post.id === id);
-  if (!post) {
+  const index = posts.find((post) => post.id === id);
+  if (index === -1) {
     res.status(404).json({ msg: `A post with id of ${id} was not found` });
+  } else {
+    posts.splice(index, 1); // Remove the post from the array
+    res.status(200).json(posts);
   }
-  post.title = req.body.title;
-  res.status(200).json(posts);
 })
 
 export default router;
