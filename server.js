@@ -5,6 +5,7 @@ const port = process.env.PORT || 8000;
 import posts from './routes/posts.js';
 import logger from './middleware/logger.js';
 import errorHandler from './middleware/error.js';
+import NotFound from './middleware/NotFound.js';
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
@@ -19,6 +20,7 @@ app.use(logger);
 app.use('/api/posts', posts);
 
 //ErrorHandler
+app.use(NotFound);
 app.use(errorHandler);
 
 app.listen(8000, () => { console.log('server start running on port 8000') });
